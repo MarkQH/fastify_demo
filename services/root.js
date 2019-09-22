@@ -1,17 +1,8 @@
 'use strict'
 
-// module.exports = function (fastify, opts, next) {
-//   fastify.get('/', function (request, reply) {
-//     reply.view({ root: true })
-//   })
-
-//   next()
-// }
-
-// If you prefer async/await, use the following
-
-module.exports = async function (fastify, opts) {
-  fastify.get('/', async function (request, reply) {
-    return { root: false }
+module.exports = function (fastify, opts, done) {
+  fastify.get('/', function (request, reply) {
+    reply.send('');
   })
+  done()
 }
