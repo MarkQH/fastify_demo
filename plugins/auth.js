@@ -1,12 +1,11 @@
 'use strict'
-const path = require('path')
 const sha1 = require('sha1')
-const fp = require('fastify-plugin')
 const config = require('../config')
+const fp = require('fastify-plugin')
 
-module.exports = (function (fastify, opts, done) {
-  // 验证消息是否来自于微信服务器
+module.exports = fp(async function (fastify, opts) {
   fastify.addHook('onRequest', (request, reply, next) => {
+    console.log('==============')
     const { signature, echostr, timestamp, nonce } = request.query
     const { token } = config
     const sha1Str = sha1([timestamp, nonce, token].sort().join(''))
@@ -17,5 +16,5 @@ module.exports = (function (fastify, opts, done) {
     }
     next()
   })
-  done()
+  return
 })

@@ -31,7 +31,7 @@ class Wechat {
   async readAccessToken() {
     try {
       let data = await readFileSync('./accessToken.txt')
-      return data
+      return JSON.parse(data)
     } catch (err) {
       return {}
     }
@@ -41,7 +41,7 @@ class Wechat {
     if (!data || !data.access_token || !data.expires_in) {
       return false
     }
-    return data.expires_in < Date.now()
+    return data.expires_in > Date.now()
   }
 
   async fetchAccessToken() {
@@ -52,7 +52,6 @@ class Wechat {
       if (this.isValidAccessToken(data)) {
         return data
       } else {
-        console.log('-----------');
         const res = await this.getAccessToken()
         await this.saveAccessToken(res)
         this.access_token = res.access_token
