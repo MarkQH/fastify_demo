@@ -2,7 +2,7 @@
 
 module.exports = function (fastify, opts, done) {
   fastify.get('/', function (request, reply) {
-    reply.send('');
+    reply.send({ status: 'ok' })
   })
   done()
 }

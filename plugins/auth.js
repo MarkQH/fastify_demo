@@ -8,13 +8,23 @@ module.exports = fp(function (fastify, opts, done) {
     const { signature, echostr, timestamp, nonce } = request.query
     const { token } = config
     const sha1Str = sha1([timestamp, nonce, token].sort().join(''))
-    console.log(request.raw.method)
-    if (sha1Str === signature) {
-      reply.send(echostr)
+    if (request.raw.method === 'GET') {
+      if (sha1Str === signature) {
+        reply.send(echostr)
+      } else {
+        reply.send('error')
+      }
+      next()
+    } else if (request.raw.method === 'POST') {
+      if (sha1Str !== signature) {
+        reply.send('error')
+      } else {
+
+      }
+      next()
     } else {
       reply.send('error')
     }
-    next()
   })
   done()
 })

@@ -8,18 +8,20 @@
   },
   "scripts": {
     "test": "tap test/**/*.test.js",
-    "start": "fastify start -l info app.js",
-    "dev": "fastify start -l info -P -w app.js"
+    "dev": "pm2 start",
+    "server": "pm2 start --env production"
   },
   "keywords": [],
   "author": "lalavi@qq.com",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
-    "fastify": "^2.0.0",
+    "fastify": "^2.8.0",
     "fastify-autoload": "^1.0.0",
     "fastify-cli": "^1.2.0",
     "fastify-plugin": "^1.5.0",
+    "fastify-xml-body-parser": "^1.0.4",
+    "pm2": "^3.5.1",
     "point-of-view": "^3.5.0",
     "pug": "^2.0.4",
     "sha1": "^1.1.1"
