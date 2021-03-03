@@ -23,7 +23,7 @@
     "fastify-xml-body-parser": "^1.0.4",
     "pm2": "^3.5.1",
     "point-of-view": "^3.5.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "sha1": "^1.1.1"
   },
   "devDependencies": {
